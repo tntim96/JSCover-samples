@@ -374,10 +374,7 @@ public class WebDriverUnderscoreProxyTest {
     };
 
     public WebDriver getWebClient() {
-        String PROXY = "localhost:3129";
-
-        Proxy proxy = new org.openqa.selenium.Proxy();
-        proxy.setHttpProxy(PROXY);
+        Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
         return new FirefoxDriver(cap);
