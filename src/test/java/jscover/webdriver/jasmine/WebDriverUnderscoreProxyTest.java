@@ -347,6 +347,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -375,10 +376,8 @@ public class WebDriverUnderscoreProxyTest {
     public WebDriver getWebClient() {
         String PROXY = "localhost:3129";
 
-        org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
-        proxy.setHttpProxy(PROXY)
-                .setFtpProxy(PROXY)
-                .setSslProxy(PROXY);
+        Proxy proxy = new org.openqa.selenium.Proxy();
+        proxy.setHttpProxy(PROXY);
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
         return new FirefoxDriver(cap);
