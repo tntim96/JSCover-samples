@@ -386,6 +386,9 @@ public class WebDriverUnderscoreProxyTest {
 
     @Before
     public void setUp() throws IOException {
+        File jsonFile = new File(getReportDir()+"/jscoverage.json");
+        if (jsonFile.exists())
+            jsonFile.delete();
         if (server == null) {
             server = new Thread(new Runnable() {
                 public void run() {
@@ -420,9 +423,6 @@ public class WebDriverUnderscoreProxyTest {
 
     @Test
     public void shouldRunJasmineTestAndStoreResult() throws IOException {
-        File jsonFile = new File(getReportDir()+"/jscoverage.json");
-        if (jsonFile.exists())
-            jsonFile.delete();
         webClient.get("http://underscorejs.org/jscoverage.html?url=http://underscorejs.org/test/");
 
         String handle = webClient.getWindowHandle();
