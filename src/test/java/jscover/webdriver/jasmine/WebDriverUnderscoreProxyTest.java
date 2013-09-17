@@ -440,7 +440,7 @@ public class WebDriverUnderscoreProxyTest {
         new WebDriverWait(webClient, 2).until(ExpectedConditions.textToBePresentInElement(By.id("storeDiv"), "Coverage data stored at"));
 
         webClient.get("file:///"+ new File(getReportDir()+"/jscoverage.html").getAbsolutePath());
-        verifyTotal(webClient, 96, 79, 89);
+        verifyTotal(webClient, 96, 80, 90);
     }
 
     private void verifyQUnitTestsPassed() {
