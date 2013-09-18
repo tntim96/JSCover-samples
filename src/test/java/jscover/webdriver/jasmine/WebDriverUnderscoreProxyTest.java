@@ -359,6 +359,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 
 public class WebDriverUnderscoreProxyTest {
@@ -369,6 +370,7 @@ public class WebDriverUnderscoreProxyTest {
             "-ws",
             "--port=3129",
             "--proxy",
+            "--local-storage",
             "--no-instrument=test/vendor",
             "--report-dir=" + getReportDir()
     };
@@ -381,7 +383,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     protected String getReportDir() {
-        return "target/reports/underscore";
+        return "target/reports/underscore-localstorage";
     }
 
     @Before
@@ -423,14 +425,11 @@ public class WebDriverUnderscoreProxyTest {
 
     @Test
     public void shouldRunJasmineTestAndStoreResult() throws IOException {
-        webClient.get("http://underscorejs.org/jscoverage.html?url=http://underscorejs.org/test/");
-
-        String handle = webClient.getWindowHandle();
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("browserIframe"));
+        webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(ExpectedConditions.textToBePresentInElement(By.id("qunit-testresult"), "Tests completed"));
         verifyQUnitTestsPassed();
 
-        webClient.switchTo().window(handle);
+        webClient.get("http://underscorejs.org/jscoverage.html");
 
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
@@ -444,8 +443,9 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     private void verifyQUnitTestsPassed() {
-        if (webClient.findElements(By.className("failingAlert")).size() != 0) {
-            //TODO
+        int failingCount = webClient.findElements(By.className("failingAlert")).size();
+        if (failingCount != 0) {
+            fail("Number of failing tests: " + failingCount);
         }
     }
 
