@@ -62,8 +62,8 @@
                     <noInstrumentArgs>
                         <arg>--no-instrument=target</arg>
                     </noInstrumentArgs>
-                    <!--<reportFormat>COBERTURAXML</reportFormat>-->
-                    <reportFormat>LCOV</reportFormat>
+                    <reportCoberturaXML>true</reportCoberturaXML>
+                    <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
 <!--
