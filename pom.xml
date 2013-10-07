@@ -75,6 +75,15 @@
                         </property>
                     </systemProperties>
 -->
+<!--
+                    <webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>
+                    <systemProperties>
+                        <property>
+                            <name>webdriver.ie.driver</name>
+                            <value>C:/java/IEDriverServer_Win32_2.33.0/IEDriverServer.exe</value>
+                        </property>
+                    </systemProperties>
+-->
                 </configuration>
             </plugin>
         </plugins>
