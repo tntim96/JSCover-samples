@@ -417,7 +417,7 @@ public abstract class WebDriverJasmineTestBase {
     }
 
     protected String getTestUrl() {
-        return "src/test/javascript/spec/jasmine-html-reporter-pass.html";
+        return "src/test/javascript/jasmine-html-reporter-code-pass.html";
     }
 
     @Test
