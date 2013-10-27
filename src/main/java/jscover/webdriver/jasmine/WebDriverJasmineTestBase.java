@@ -368,6 +368,7 @@ public abstract class WebDriverJasmineTestBase {
     private String[] args = new String[]{
             "-ws",
             "--port=8081",
+            "--no-instrument=src/main/webapp/js/vendor",
             "--no-instrument=src/test/javascript/lib",
             "--no-instrument=src/test/javascript/spec",
             "--no-instrument=target",
