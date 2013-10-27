@@ -11,4 +11,4 @@ To run JUnit tests:
 `mvn test`
 
 To run the JSCover Server Maven Plugin:
-`mvn jscover:server`
+`mvn jscover-server:server`
