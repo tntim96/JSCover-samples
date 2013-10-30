@@ -73,20 +73,26 @@
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
-                    <testIncludes>qunit-*.html</testIncludes>
+                    <testIncludes>qunit-*pass.html</testIncludes>
                     <testType>QUnit</testType>
-                    <lineCoverageMinimum>82</lineCoverageMinimum>
-                    <branchCoverageMinimum>48</branchCoverageMinimum>
-                    <functionCoverageMinimum>70</functionCoverageMinimum>
+                    <!--<testIncludes>jasmine-html-*.html</testIncludes>-->
+                    <!--<testType>JasmineHtmlReporter</testType>-->
+                    <!--<testIncludes>jasmine-trivial-*.html</testIncludes>-->
+                    <!--<testType>JasmineTrivialReporter</testType>-->
+                    <lineCoverageMinimum>66</lineCoverageMinimum>
+                    <branchCoverageMinimum>66</branchCoverageMinimum>
+                    <functionCoverageMinimum>66</functionCoverageMinimum>
                     <instrumentPathArgs>
                         <arg>--no-instrument=src/main/webapp/js/vendor/</arg>
                         <arg>--no-instrument=src/test</arg>
                         <arg>--no-instrument=target</arg>
                     </instrumentPathArgs>
+                    <includeUnloadedJS>true</includeUnloadedJS>
                     <reportCoberturaXML>true</reportCoberturaXML>
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
+                    <!--
                     <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
                     <systemProperties>
                         <property>
@@ -94,6 +100,7 @@
                             <value>C:/java/chromedriver_win32_2.4/chromedriver.exe</value>
                         </property>
                     </systemProperties>
+                    -->
                     <!--
                     <webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>
                     <systemProperties>
@@ -112,11 +119,15 @@
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
-                    <testIncludes>qunit-*.html</testIncludes>
+                    <testIncludes>qunit-*pass.html</testIncludes>
                     <testType>QUnit</testType>
-                    <lineCoverageMinimum>82</lineCoverageMinimum>
-                    <branchCoverageMinimum>48</branchCoverageMinimum>
-                    <functionCoverageMinimum>70</functionCoverageMinimum>
+                    <!--<testIncludes>jasmine-html-*pass.html</testIncludes>-->
+                    <!--<testType>JasmineHtmlReporter</testType>-->
+                    <!--<testIncludes>jasmine-trivial-*pass.html</testIncludes>-->
+                    <!--<testType>JasmineTrivialReporter</testType>-->
+                    <lineCoverageMinimum>100</lineCoverageMinimum>
+                    <branchCoverageMinimum>100</branchCoverageMinimum>
+                    <functionCoverageMinimum>100</functionCoverageMinimum>
                     <instrumentPathArgs>
                         <arg>--no-instrument=main/webapp/js/vendor/</arg>
                         <arg>--no-instrument=test</arg>
@@ -127,7 +138,7 @@
                     </excludeArgs>
                     <reportCoberturaXML>true</reportCoberturaXML>
                     <reportLCOV>true</reportLCOV>
-                    <webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>
+                    <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
                     <!--
                     <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
