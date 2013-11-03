@@ -28,4 +28,7 @@ To run the JSCover Server Maven Plugin:
 To run the JSCover File Maven Plugin:
 `mvn jscover-file:file`
 
+*Note* This generate your coverage reports without ever running a server
+
+
 See the configuration in the [pom.xml](https://github.com/tntim96/JSCover-samples/blob/master/pom.xml).
