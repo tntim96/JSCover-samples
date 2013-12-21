@@ -365,8 +365,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 public class WebDriverUnderscoreProxyTest {
     private static Thread server;
 
-    protected WebDriver webClient = getWebClient();
-    private String[] args = new String[]{
+    private final WebDriver webClient = getWebClient();
+    private final String[] args = new String[]{
             "-ws",
             "--port=3129",
             "--proxy",
@@ -375,14 +375,14 @@ public class WebDriverUnderscoreProxyTest {
             "--report-dir=" + getReportDir()
     };
 
-    public WebDriver getWebClient() {
+    WebDriver getWebClient() {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
         return new FirefoxDriver(cap);
     }
 
-    protected String getReportDir() {
+    String getReportDir() {
         return "target/reports/underscore-localstorage";
     }
 
@@ -419,7 +419,7 @@ public class WebDriverUnderscoreProxyTest {
         }
     }
 
-    protected String[] getArgs() {
+    String[] getArgs() {
         return args;
     }
 
@@ -449,13 +449,13 @@ public class WebDriverUnderscoreProxyTest {
         }
     }
 
-    protected void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) throws IOException {
+    void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
         webClient.findElement(By.id("summaryTab")).click();
 
         verifyTotals(webClient, percentage, branchPercentage, functionPercentage);
     }
 
-    protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
+    void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
         new WebDriverWait(webClient, 1).until(textToBePresentInElement(By.id("summaryTotal"), "%"));
         assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
         assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
