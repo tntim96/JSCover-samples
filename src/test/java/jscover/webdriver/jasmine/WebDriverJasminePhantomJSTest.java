@@ -349,7 +349,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class WebDriverJasminePhantomJSTest extends WebDriverJasmineTestBase {
 
     static {
-        System.setProperty("phantomjs.binary.path", "C:/js/phantomjs-1.9.2-windows/phantomjs.exe");
+        //System.setProperty("phantomjs.binary.path", "C:/java/drivers//phantomjs.exe");
     }
 
     @Override

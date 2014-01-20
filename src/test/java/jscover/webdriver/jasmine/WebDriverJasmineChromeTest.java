@@ -349,8 +349,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class WebDriverJasmineChromeTest extends WebDriverJasmineTestBase {
 
     static {
-//        System.setProperty("webdriver.chrome.driver","C:/Program Files (x86)/Google/Chrome/Application/chrome.exe");
-        System.setProperty("webdriver.chrome.driver", "C:/java/chromedriver_win32_2.4/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","C:/Program Files (x86)/Google/Chrome/Application/chrome.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:/java/drivers/chromedriver.exe");
     }
 
     @Override

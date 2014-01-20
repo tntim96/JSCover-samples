@@ -360,7 +360,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public class WebDriverUnderscoreProxyTest {
     private static Thread server;
@@ -426,7 +426,7 @@ public class WebDriverUnderscoreProxyTest {
     @Test
     public void shouldRunJasmineTestAndStoreResult() throws IOException {
         webClient.get("http://underscorejs.org/test/");
-        new WebDriverWait(webClient, 20).until(ExpectedConditions.textToBePresentInElement(By.id("qunit-testresult"), "Tests completed"));
+        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
         verifyQUnitTestsPassed();
 
         webClient.get("http://underscorejs.org/jscoverage.html");
@@ -436,7 +436,7 @@ public class WebDriverUnderscoreProxyTest {
 
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 2).until(ExpectedConditions.textToBePresentInElement(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, 2).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
         webClient.get("file:///"+ new File(getReportDir()+"/jscoverage.html").getAbsolutePath());
         verifyTotal(webClient, 96, 80, 90);
@@ -456,7 +456,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-        new WebDriverWait(webClient, 1).until(textToBePresentInElement(By.id("summaryTotal"), "%"));
+        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
         assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
         assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
         assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());

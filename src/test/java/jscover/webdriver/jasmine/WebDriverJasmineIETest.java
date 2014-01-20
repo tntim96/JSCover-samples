@@ -350,7 +350,7 @@ public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
 
     static {
         //System.setProperty("webdriver.ie.driver", "C:/java/IEDriverServer_x64_2.33.0/IEDriverServer.exe");
-        System.setProperty("webdriver.ie.driver", "C:/java/IEDriverServer_Win32_2.37.0/IEDriverServer.exe");
+        //System.setProperty("webdriver.ie.driver", "C:/java/drivers/IEDriverServer.exe");
     }
 
     @Override

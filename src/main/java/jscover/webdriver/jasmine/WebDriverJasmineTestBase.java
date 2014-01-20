@@ -359,7 +359,7 @@ import java.util.Set;
 import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public abstract class WebDriverJasmineTestBase {
     private static Thread server;
@@ -430,7 +430,7 @@ public abstract class WebDriverJasmineTestBase {
         String handle = webClient.getWindowHandle();
         new WebDriverWait(webClient, 1).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("browserIframe"));
         new WebDriverWait(webClient, 1).until(ExpectedConditions.presenceOfElementLocated(By.className("duration")));
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElement(By.className("duration"), "finished"));
+        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.className("duration"), "finished"));
         verifyJasmineTestsPassed();
 
         webClient.switchTo().window(handle);
@@ -440,7 +440,7 @@ public abstract class WebDriverJasmineTestBase {
 
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 2).until(ExpectedConditions.textToBePresentInElement(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, 2).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
         webClient.get(format("http://localhost:8081/%s/jscoverage.html", getReportDir()));
         verifyTotal(webClient, 100, 100, 100);
@@ -468,7 +468,7 @@ public abstract class WebDriverJasmineTestBase {
 
 
         new WebDriverWait(webClient, 1).until(ExpectedConditions.presenceOfElementLocated(By.className("duration")));
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElement(By.className("duration"), "finished"));
+        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.className("duration"), "finished"));
         verifyJasmineTestsPassed();
         webClient.switchTo().window(handle);
 
@@ -495,7 +495,7 @@ public abstract class WebDriverJasmineTestBase {
     }
 
     protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-        new WebDriverWait(webClient, 1).until(textToBePresentInElement(By.id("summaryTotal"), "%"));
+        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
         assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
         assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
         assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());
