@@ -347,6 +347,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -388,9 +389,6 @@ public class WebDriverUnderscoreProxyTest {
 
     @Before
     public void setUp() throws IOException {
-        File jsonFile = new File(getReportDir()+"/jscoverage.json");
-        if (jsonFile.exists())
-            jsonFile.delete();
         if (server == null) {
             server = new Thread(new Runnable() {
                 public void run() {
@@ -424,22 +422,44 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     @Test
-    public void shouldRunQUnitTestsAndStoreResult() throws IOException {
+    public void shouldRunQUnitTestsAndStoreResultProgrammatically() throws IOException {
+        deleteJSON("/no-frames");
+        webClient.get("http://underscorejs.org/test/");
+        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
+        verifyQUnitTestsPassed();
+        ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames');");
+        verifyCoverage("/no-frames");
+    }
+
+    @Test
+    public void shouldRunQUnitTestsAndStoreResultManually() throws IOException, InterruptedException {
+        deleteJSON("");
         webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
         verifyQUnitTestsPassed();
 
         webClient.get("http://underscorejs.org/jscoverage.html");
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
+        new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+        new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+        Thread.sleep(100);
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 2).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, 5).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
-        webClient.get("file:///"+ new File(getReportDir()+"/jscoverage.html").getAbsolutePath());
-        verifyTotal(webClient, 96, 80, 90);
+        verifyCoverage("");
+    }
+
+    private void deleteJSON(String reportDir) {
+        File jsonFile = new File(getReportDir()+reportDir+"/jscoverage.json");
+        if (jsonFile.exists())
+            jsonFile.delete();
+    }
+
+    private void verifyCoverage(String reportDir) {
+        webClient.get("file:///"+ new File(getReportDir()+reportDir+"/jscoverage.html").getAbsolutePath());
+        verifyTotal(webClient, 97, 80, 93);
     }
 
     private void verifyQUnitTestsPassed() {
