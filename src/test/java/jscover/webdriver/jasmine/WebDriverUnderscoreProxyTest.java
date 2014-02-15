@@ -424,7 +424,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     @Test
-    public void shouldRunJasmineTestAndStoreResult() throws IOException {
+    public void shouldRunQUnitTestsAndStoreResult() throws IOException {
         webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
         verifyQUnitTestsPassed();
