@@ -1,4 +1,4 @@
-package jscover.webdriver.jasmine;
+package jscover.webdriver.proxy;
 
 import jscover.Main;
 import org.junit.After;

@@ -340,7 +340,7 @@ library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
  */
 
-package jscover.webdriver.jasmine;
+package jscover.webdriver.proxy;
 
 import jscover.Main;
 import org.junit.After;

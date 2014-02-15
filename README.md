@@ -27,8 +27,12 @@ The main class is
 
 The examples use Jasmine and Jasmine's `HtmlReporter`.
 
-### Proxy Example With QUnit
-Run Underscore's online QUnit tests in FireFox: [WebDriverUnderscoreProxyTest](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/jasmine/WebDriverUnderscoreProxyTest.java)
+### Proxy Examples
+#### General
+Run interactive sample from JSCover's web-site in FireFox: [WebDriverGeneralProxyTest](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/proxy/WebDriverGeneralProxyTest.java)
+
+#### With QUnit
+Run Underscore's online QUnit tests in FireFox: [WebDriverUnderscoreProxyTest](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/proxy/WebDriverUnderscoreProxyTest.java)
 
 
 
