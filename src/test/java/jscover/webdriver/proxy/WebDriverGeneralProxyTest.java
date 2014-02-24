@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -41,7 +42,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     String getReportDir() {
-        return "target/reports/jscover-localstorage";
+        return "target/reports/jscover-localstorage-general";
     }
 
     @Before
@@ -82,7 +83,20 @@ public class WebDriverGeneralProxyTest {
     }
 
     @Test
+    public void shouldRunExampleAndStoreResultProgrammatically() throws IOException {
+        deleteJSON("/no-frames");
+        webClient.get("http://tntim96.github.io/JSCover/example/");
+        new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
+        webClient.findElement(By.id("radio2")).click();
+        webClient.findElement(By.id("radio4")).click();
+        ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames');");
+        verifyCoverage("/no-frames");
+        verifyTotal(webClient, 89, 62, 100);
+    }
+
+    @Test
     public void shouldRunExample() throws IOException {
+        deleteJSON("");
         webClient.get("http://tntim96.github.io/JSCover/example/");
         new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
         webClient.findElement(By.id("radio2")).click();
@@ -97,8 +111,18 @@ public class WebDriverGeneralProxyTest {
         webClient.findElement(By.id("storeButton")).click();
         new WebDriverWait(webClient, 2).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
-        webClient.get("file:///"+ new File(getReportDir()+"/jscoverage.html").getAbsolutePath());
+        verifyCoverage("");
+    }
+
+    private void verifyCoverage(String reportDir) {
+        webClient.get("file:///"+ new File(getReportDir()+reportDir+"/jscoverage.html").getAbsolutePath());
         verifyTotal(webClient, 89, 62, 100);
+    }
+
+    private void deleteJSON(String reportDir) {
+        File jsonFile = new File(getReportDir()+reportDir+"/jscoverage.json");
+        if (jsonFile.exists())
+            jsonFile.delete();
     }
 
     void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
