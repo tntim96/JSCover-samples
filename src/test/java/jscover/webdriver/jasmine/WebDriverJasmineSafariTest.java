@@ -342,9 +342,11 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
+import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+@Ignore
 public class WebDriverJasmineSafariTest extends WebDriverJasmineTestBase {
     @Override
     public WebDriver getWebClient() {
