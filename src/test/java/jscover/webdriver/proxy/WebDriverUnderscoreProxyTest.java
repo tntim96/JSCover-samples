@@ -446,7 +446,7 @@ public class WebDriverUnderscoreProxyTest {
         new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         Thread.sleep(100);
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 5).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
         verifyCoverage("");
     }
