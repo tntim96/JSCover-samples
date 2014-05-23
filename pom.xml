@@ -69,7 +69,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.9</version>
         </dependency>
     </dependencies>
 
@@ -87,7 +87,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.3</version>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
                     <testIncludes>qunit-*pass.html</testIncludes>
@@ -116,7 +116,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.3</version>
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
