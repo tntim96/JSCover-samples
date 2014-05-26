@@ -23,31 +23,29 @@
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </repository>
-        <!-- Testing snapshot development
+        <!-- Testing snapshot development -->
         <repository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
-        -->
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </pluginRepository>
-        <!-- Testing snapshot development
+        <!-- Testing snapshot development -->
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
-        -->
         <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
-			<url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1043</url>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1043</url>
         </pluginRepository>
         -->
 
@@ -56,7 +54,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.41.0</version>
+            <version>2.42.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.detro.ghostdriver</groupId>
@@ -71,7 +69,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.9</version>
+            <version>1.0.10-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -89,7 +87,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.3</version>
+                <version>1.0.4-SNAPSHOT</version>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
                     <testIncludes>qunit-*pass.html</testIncludes>
@@ -111,14 +109,14 @@
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
-                    <!--<webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>-->
+                    <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
                     <!--<webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>-->
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.3</version>
+                <version>1.0.4-SNAPSHOT</version>
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
@@ -138,12 +136,13 @@
                     <excludeArgs>
                         <excludeArg>--exclude=main/java</excludeArg>
                         <excludeArg>--exclude=main/resources</excludeArg>
+                        <excludeArg>--exclude-reg=test/java$</excludeArg>
                     </excludeArgs>
                     <reportCoberturaXML>true</reportCoberturaXML>
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
-                    <!--<webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>-->
+                    <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
                     <!--<webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>-->
                 </configuration>
             </plugin>
