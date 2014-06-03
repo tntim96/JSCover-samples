@@ -4,7 +4,7 @@
 
     <groupId>JSCover-samples</groupId>
     <artifactId>JSCover-samples</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>JSCover-samples</name>
@@ -23,32 +23,33 @@
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </repository>
-        <!-- Testing snapshot development -->
+        <!-- Testing snapshot development
         <repository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        -->
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </pluginRepository>
-        <!-- Testing snapshot development -->
+        <!-- Testing snapshot development
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
+        -->
         <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
-            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1043</url>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1050</url>
         </pluginRepository>
         -->
-
     </pluginRepositories>
     <dependencies>
         <dependency>
@@ -69,7 +70,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.10-SNAPSHOT</version>
+            <version>1.0.10</version>
         </dependency>
     </dependencies>
 
@@ -87,7 +88,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.4-SNAPSHOT</version>
+                <version>1.0.4</version>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
                     <testIncludes>qunit-*pass.html</testIncludes>
@@ -116,7 +117,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.4-SNAPSHOT</version>
+                <version>1.0.4</version>
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
