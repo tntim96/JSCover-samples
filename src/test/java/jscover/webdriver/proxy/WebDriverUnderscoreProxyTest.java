@@ -343,9 +343,7 @@ Public License instead of this License.
 package jscover.webdriver.proxy;
 
 import jscover.Main;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
@@ -365,42 +363,43 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 
 public class WebDriverUnderscoreProxyTest {
     private static Thread server;
-
-    private final WebDriver webClient = getWebClient();
-    private final String[] args = new String[]{
+    private static Main main = new Main();
+    private static String reportDir = "target/reports/underscore-localstorage";
+    private static final String[] args = new String[]{
             "-ws",
             "--port=3129",
             "--proxy",
             "--local-storage",
             "--no-instrument=test/vendor",
-            "--report-dir=" + getReportDir()
+            "--report-dir=" + reportDir
     };
 
-    WebDriver getWebClient() {
+    private final WebDriver webClient = getWebClient();
+
+    private WebDriver getWebClient() {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
         return new FirefoxDriver(cap);
     }
 
-    String getReportDir() {
-        return "target/reports/underscore-localstorage";
+    @BeforeClass
+    public static void setUpOnce() throws IOException {
+        server = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    main.runMain(args);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        server.start();
     }
 
-    @Before
-    public void setUp() throws IOException {
-        if (server == null) {
-            server = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Main.main(getArgs());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
-            server.start();
-        }
+    @AfterClass
+    public static void tearDownOnce() {
+        main.stop();
     }
 
     @After
@@ -415,10 +414,6 @@ public class WebDriverUnderscoreProxyTest {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-    }
-
-    String[] getArgs() {
-        return args;
     }
 
     @Test
@@ -451,14 +446,14 @@ public class WebDriverUnderscoreProxyTest {
         verifyCoverage("");
     }
 
-    private void deleteJSON(String reportDir) {
-        File jsonFile = new File(getReportDir()+reportDir+"/jscoverage.json");
+    private void deleteJSON(String reportSubDir) {
+        File jsonFile = new File(reportDir+reportSubDir+"/jscoverage.json");
         if (jsonFile.exists())
             jsonFile.delete();
     }
 
-    private void verifyCoverage(String reportDir) {
-        webClient.get("file:///"+ new File(getReportDir()+reportDir+"/jscoverage.html").getAbsolutePath());
+    private void verifyCoverage(String reportSubDir) {
+        webClient.get("file:///"+ new File(reportDir+reportSubDir+"/jscoverage.html").getAbsolutePath());
         verifyTotal(webClient, 97, 80, 93);
     }
 
