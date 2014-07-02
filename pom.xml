@@ -43,13 +43,12 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
         -->
-        <!-- Testing staged release
+        <!-- Testing staged release -->
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
-            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1052</url>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1054</url>
         </pluginRepository>
-        -->
     </pluginRepositories>
     <dependencies>
         <dependency>
@@ -70,7 +69,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.12</version>
         </dependency>
     </dependencies>
 
@@ -96,7 +95,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.5</version>
+                <version>1.0.6</version>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
                     <testIncludes>qunit-*pass.html</testIncludes>
@@ -125,7 +124,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.5</version>
+                <version>1.0.6</version>
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
