@@ -43,12 +43,13 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
         -->
-        <!-- Testing staged release -->
+        <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
             <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1057</url>
         </pluginRepository>
+        -->
     </pluginRepositories>
     <dependencies>
         <dependency>
