@@ -43,13 +43,12 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
         -->
-        <!-- Testing staged release
+        <!-- Testing staged release -->
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
-            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1054</url>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1057</url>
         </pluginRepository>
-        -->
     </pluginRepositories>
     <dependencies>
         <dependency>
@@ -96,7 +95,15 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.6</version>
+                <version>1.0.7</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jscover</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <testDirectory>src/test/javascript/</testDirectory>
                     <testIncludes>qunit-*pass.html</testIncludes>
@@ -114,6 +121,7 @@
                         <arg>--no-instrument=target</arg>
                     </instrumentPathArgs>
                     <includeUnloadedJS>true</includeUnloadedJS>
+                    <reportDir>target/reports/jscover-maven/server</reportDir>
                     <reportCoberturaXML>true</reportCoberturaXML>
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
@@ -125,7 +133,15 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.6</version>
+                <version>1.0.7</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jscover</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <srcDir>src</srcDir>
                     <testDirectory>src/test/javascript</testDirectory>
@@ -147,6 +163,7 @@
                         <excludeArg>--exclude=main/resources</excludeArg>
                         <excludeArg>--exclude-reg=test/java$</excludeArg>
                     </excludeArgs>
+                    <reportDir>target/reports/jscover-maven/file</reportDir>
                     <reportCoberturaXML>true</reportCoberturaXML>
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->

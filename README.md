@@ -6,6 +6,9 @@ Samples for JSCover
 * Maven 3
 * [InternetExplorer and Chrome drivers for Selenium](http://code.google.com/p/selenium/downloads/list) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
 
+To run all tests:
+`mvn verify`
+
 ### Handling Drivers Not On Executable Path
 #### Maven Plugins
 The Maven plugins driver path can be with the `systemProperties` property in the `pom.xml` file.
@@ -38,10 +41,10 @@ Run Underscore's online QUnit tests in FireFox: [WebDriverUnderscoreProxyTest](h
 
 ## JSCover Maven Plugin
 To run the JSCover Server Maven Plugin:
-`mvn jscover-server:server`
+`mvn jscover-server:jscover`
 
 To run the JSCover File Maven Plugin:
-`mvn jscover-file:file`
+`mvn jscover-file:jscover`
 
 **Note** JSCover File Maven Plugin generates your coverage reports _without ever running a server_.
 
