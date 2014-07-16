@@ -36,13 +36,12 @@
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </pluginRepository>
-        <!-- Testing snapshot development
+        <!-- Testing snapshot development -->
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
-        -->
         <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
@@ -96,7 +95,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.7</version>
+                <version>1.0.8-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -134,7 +133,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.7</version>
+                <version>1.0.8-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>

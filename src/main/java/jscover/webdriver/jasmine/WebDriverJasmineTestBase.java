@@ -387,11 +387,7 @@ public abstract class WebDriverJasmineTestBase {
         if (server == null) {
             server = new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        Main.main(getArgs());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    new Main().runMain(getArgs());
                 }
             });
             server.start();
