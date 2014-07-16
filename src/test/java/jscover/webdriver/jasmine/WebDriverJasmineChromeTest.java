@@ -351,6 +351,7 @@ public class WebDriverJasmineChromeTest extends WebDriverJasmineTestBase {
     static {
         //System.setProperty("webdriver.chrome.driver","C:/Program Files (x86)/Google/Chrome/Application/chrome.exe");
         //System.setProperty("webdriver.chrome.driver", "C:/java/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
     }
 
     @Override
