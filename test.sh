@@ -1,0 +1,1 @@
+mvn clean verify && mvn surefire-report:report -DskipTests=true -Daggregate=true
