@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -42,7 +41,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     @BeforeClass
-    public static void setUpOnce() throws IOException {
+    public static void setUpOnce() {
         server = new Thread(new Runnable() {
             public void run() {
                 main.runMain(args);
@@ -57,7 +56,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() {
         File jsonFile = new File(reportDir+"/jscoverage.json");
         if (jsonFile.exists())
             jsonFile.delete();
@@ -78,7 +77,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     @Test
-    public void shouldRunExampleAndStoreResultProgrammatically() throws IOException {
+    public void shouldRunExampleAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
         webClient.get("http://tntim96.github.io/JSCover/example/");
         new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
@@ -90,7 +89,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     @Test
-    public void shouldRunExample() throws IOException {
+    public void shouldRunExample() {
         deleteJSON("");
         webClient.get("http://tntim96.github.io/JSCover/example/");
         new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
@@ -102,6 +101,7 @@ public class WebDriverGeneralProxyTest {
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
+        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"),"Done"));
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
         new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));

@@ -353,7 +353,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Set;
 
 import static java.lang.String.format;
@@ -383,7 +382,7 @@ public abstract class WebDriverJasmineTestBase {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() {
         if (server == null) {
             server = new Thread(new Runnable() {
                 public void run() {
@@ -417,7 +416,7 @@ public abstract class WebDriverJasmineTestBase {
     }
 
     @Test
-    public void shouldRunJasmineTestAndStoreResult() throws IOException {
+    public void shouldRunJasmineTestAndStoreResult() {
         File jsonFile = new File(getReportDir()+"/jscoverage.json");
         if (jsonFile.exists())
             jsonFile.delete();
@@ -434,6 +433,7 @@ public abstract class WebDriverJasmineTestBase {
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
+        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"),"Done"));
         new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
         new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
@@ -484,7 +484,7 @@ public abstract class WebDriverJasmineTestBase {
         }
     }
 
-    protected void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) throws IOException {
+    protected void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
         webClient.findElement(By.id("summaryTab")).click();
 
         verifyTotals(webClient, percentage, branchPercentage, functionPercentage);

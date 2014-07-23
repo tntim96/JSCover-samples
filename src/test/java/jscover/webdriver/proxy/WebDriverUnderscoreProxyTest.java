@@ -343,7 +343,10 @@ Public License instead of this License.
 package jscover.webdriver.proxy;
 
 import jscover.Main;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
@@ -355,7 +358,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -384,7 +386,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     @BeforeClass
-    public static void setUpOnce() throws IOException {
+    public static void setUpOnce() {
         server = new Thread(new Runnable() {
             public void run() {
                 main.runMain(args);
@@ -413,7 +415,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     @Test
-    public void shouldRunQUnitTestsAndStoreResultProgrammatically() throws IOException {
+    public void shouldRunQUnitTestsAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
         webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
@@ -423,7 +425,7 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     @Test
-    public void shouldRunQUnitTestsAndStoreResultManually() throws IOException, InterruptedException {
+    public void shouldRunQUnitTestsAndStoreResultManually() {
         deleteJSON("");
         webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
@@ -434,8 +436,8 @@ public class WebDriverUnderscoreProxyTest {
         new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
+        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
         new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
-        Thread.sleep(100);
         webClient.findElement(By.id("storeButton")).click();
         new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
