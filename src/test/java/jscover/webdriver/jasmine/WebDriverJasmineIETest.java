@@ -342,10 +342,12 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+@RunWith(CheckWindowsRunner.class)
 public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
 
     static {
