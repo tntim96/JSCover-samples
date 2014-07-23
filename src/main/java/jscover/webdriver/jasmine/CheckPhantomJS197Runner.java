@@ -7,6 +7,7 @@ import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -34,8 +35,13 @@ public class CheckPhantomJS197Runner extends BlockJUnit4ClassRunner {
     }
 
     private boolean isPhantomJS197OrBetter() {
-        Map<String, Long> version = (Map<String, Long>) new PhantomJSDriver(new DesiredCapabilities()).executePhantomJS("return phantom.version;");
-        //{minor=9, major=1, patch=7}
-        return version.get("major") >= 1 && version.get("minor") >= 9 && version.get("patch") >= 7;
+        try {
+            Map<String, Long> version = (Map<String, Long>) new PhantomJSDriver(new DesiredCapabilities()).executePhantomJS("return phantom.version;");
+            //{minor=9, major=1, patch=7}
+            return version.get("major") >= 1 && version.get("minor") >= 9 && version.get("patch") >= 7;
+        } catch(WebDriverException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
