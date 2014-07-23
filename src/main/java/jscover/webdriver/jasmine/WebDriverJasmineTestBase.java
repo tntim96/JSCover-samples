@@ -369,7 +369,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 public abstract class WebDriverJasmineTestBase {
     private static Thread server;
 
-    protected WebDriver webClient = getWebClient();
+    protected WebDriver webClient;
     private String[] args = new String[]{
             "-ws",
             "--port=8081",
@@ -389,15 +389,19 @@ public abstract class WebDriverJasmineTestBase {
 
     @Before
     public void setUp() throws Exception {
+        //boolean justStarted = false;
         if (server == null) {
+            //justStarted = true;
             server = new Thread(new Runnable() {
                 public void run() {
                     new Main().runMain(getArgs());
                 }
             });
             server.start();
-            waitForServerToStart();
         }
+        webClient = getWebClient();
+        //if (justStarted)
+        //    waitForServerToStart();
     }
 
     private void waitForServerToStart() throws IOException, InterruptedException {
