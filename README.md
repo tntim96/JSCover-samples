@@ -1,6 +1,8 @@
 Samples for JSCover
 ===================
 
+[![Build Status](https://drone.io/github.com/tntim96/JSCover-samples/status.png)](https://drone.io/github.com/tntim96/JSCover-samples/latest)
+
 ## What you need:
 * Java (minimum 1.5)
 * Maven 3
