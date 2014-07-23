@@ -342,10 +342,13 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+
+@RunWith(CheckPhantomJS197Runner.class)
 public class WebDriverJasminePhantomJSTest extends WebDriverJasmineTestBase {
 
     static {
