@@ -2,7 +2,6 @@ package jscover.webdriver.jasmine;
 
 import org.junit.Ignore;
 import org.junit.runner.Description;
-import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
@@ -35,13 +34,28 @@ public class CheckPhantomJS197Runner extends BlockJUnit4ClassRunner {
     }
 
     private boolean isPhantomJS197OrBetter() {
+        PhantomJSDriver phantomJSDriver = null;
         try {
-            Map<String, Long> version = (Map<String, Long>) new PhantomJSDriver(new DesiredCapabilities()).executePhantomJS("return phantom.version;");
+            phantomJSDriver = new PhantomJSDriver(new DesiredCapabilities());
+            Map<String, Long> version = (Map<String, Long>) phantomJSDriver.executePhantomJS("return phantom.version;");
             //{minor=9, major=1, patch=7}
             return version.get("major") >= 1 && version.get("minor") >= 9 && version.get("patch") >= 7;
         } catch(WebDriverException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            if (phantomJSDriver != null) {
+                try {
+                    phantomJSDriver.close();
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
+                try {
+                    phantomJSDriver.quit();
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
+            }
         }
     }
 }
