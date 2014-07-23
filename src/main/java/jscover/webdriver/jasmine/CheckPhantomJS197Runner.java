@@ -36,6 +36,6 @@ public class CheckPhantomJS197Runner extends BlockJUnit4ClassRunner {
     private boolean isPhantomJS197OrBetter() {
         Map<String, Long> version = (Map<String, Long>) new PhantomJSDriver(new DesiredCapabilities()).executePhantomJS("return phantom.version;");
         //{minor=9, major=1, patch=7}
-        return version.get("major") >= 1 && version.get("minor") >= 8 && version.get("patch") >= 7;
+        return version.get("major") >= 1 && version.get("minor") >= 9 && version.get("patch") >= 7;
     }
 }
