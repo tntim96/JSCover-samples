@@ -343,6 +343,11 @@ Public License instead of this License.
 package jscover.webdriver.jasmine;
 
 import jscover.Main;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.impl.client.HttpClients;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -353,6 +358,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 import static java.lang.String.format;
@@ -382,7 +388,7 @@ public abstract class WebDriverJasmineTestBase {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         if (server == null) {
             server = new Thread(new Runnable() {
                 public void run() {
@@ -390,6 +396,22 @@ public abstract class WebDriverJasmineTestBase {
                 }
             });
             server.start();
+            waitForServerToStart();
+        }
+    }
+
+    private void waitForServerToStart() throws IOException, InterruptedException {
+        for (int i = 0; i < 20; i++) {
+            System.out.println("Waiting for server..."+(i+1));
+            try {
+                HttpClient httpclient = HttpClients.createMinimal();
+                HttpGet httpget = new HttpGet("http://localhost:8081/jscoverage.html");
+                HttpResponse httpResponse = httpclient.execute(httpget);
+                if (httpResponse.getStatusLine().getStatusCode() == 200)
+                    break;
+            } catch(HttpHostConnectException e) {
+            }
+            Thread.sleep(10);
         }
     }
 
