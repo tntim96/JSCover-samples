@@ -117,7 +117,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.13</version>
+                <version>1.0.14-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
@@ -155,7 +155,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.13</version>
+                <version>1.0.14-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
