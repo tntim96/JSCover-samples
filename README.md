@@ -4,7 +4,7 @@ Samples for JSCover
 [![Build Status](https://drone.io/github.com/tntim96/JSCover-samples/status.png)](https://drone.io/github.com/tntim96/JSCover-samples/latest)
 
 ## What you need:
-* Java (minimum 1.5)
+* Java (minimum 1.6)
 * Maven 3
 * [InternetExplorer and Chrome drivers for Selenium](http://code.google.com/p/selenium/downloads/list) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
 
