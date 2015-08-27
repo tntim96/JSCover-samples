@@ -342,12 +342,14 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
+import static java.lang.String.format;
+import static org.junit.Assert.assertEquals;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
+
 import jscover.Main;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.HttpHostConnectException;
-import org.apache.http.impl.client.HttpClients;
+import jscover.maven.Jasmine2DefaultReporterWebDriverRunner;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -358,168 +360,128 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Set;
 
-import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public abstract class WebDriverJasmineTestBase {
-    private static Thread server;
 
-    protected WebDriver webClient;
-    private String[] args = new String[]{
-            "-ws",
-            "--port=8081",
-            "--no-instrument=src/main/webapp/js/vendor",
-            "--no-instrument=src/test/javascript/lib",
-            "--no-instrument=src/test/javascript/spec",
-            "--no-instrument=target",
-            "--report-dir=" + getReportDir()
-    };
+  private static Thread server;
 
-    protected abstract WebDriver getWebClient();
-    protected abstract String getReportPartialSubDirectory();
+  protected WebDriver webClient;
+  private String[] args = new String[]{
+      "-ws",
+      "--port=8081",
+      "--local-storage",
+      "--no-instrument=src/main/webapp/js/vendor",
+      "--no-instrument=src/test/javascript/lib",
+      "--no-instrument=src/test/javascript/spec",
+      "--no-instrument=target",
+      "--report-dir=" + getReportDir()
+  };
+  private Jasmine2DefaultReporterWebDriverRunner runner = new Jasmine2DefaultReporterWebDriverRunner();
 
-    protected String getReportDir() {
-        return "target/reports/jscover-" + getReportPartialSubDirectory();
-    }
 
-    @Before
-    public void setUp() throws Exception {
-        //boolean justStarted = false;
-        if (server == null) {
-            //justStarted = true;
-            server = new Thread(new Runnable() {
-                public void run() {
-                    new Main().runMain(getArgs());
-                }
-            });
-            server.start();
+  protected abstract WebDriver getWebClient();
+
+  protected abstract String getReportPartialSubDirectory();
+
+
+  protected String getReportDir() {
+    return "target/reports/jscover-" + getReportPartialSubDirectory();
+  }
+
+
+  @Before
+  public void setUp() throws Exception {
+    //boolean justStarted = false;
+    if (server == null) {
+      //justStarted = true;
+      server = new Thread(new Runnable() {
+        public void run() {
+          new Main().runMain(getArgs());
         }
-        webClient = getWebClient();
-        //if (justStarted)
-        //    waitForServerToStart();
+      });
+      server.start();
     }
+    webClient = getWebClient();
+  }
 
-    private void waitForServerToStart() throws IOException, InterruptedException {
-        for (int i = 0; i < 20; i++) {
-            System.out.println("Waiting for server..."+(i+1));
-            try {
-                HttpClient httpclient = HttpClients.createMinimal();
-                HttpGet httpget = new HttpGet("http://localhost:8081/jscoverage.html");
-                HttpResponse httpResponse = httpclient.execute(httpget);
-                if (httpResponse.getStatusLine().getStatusCode() == 200)
-                    break;
-            } catch(HttpHostConnectException e) {
-            }
-            Thread.sleep(10);
-        }
+
+  @After
+  public void tearDown() {
+    try {
+      webClient.close();
+    } catch (Throwable t) {
+      t.printStackTrace();
     }
-
-    @After
-    public void tearDown() {
-        try {
-            webClient.close();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-        try {
-            webClient.quit();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+    try {
+      webClient.quit();
+    } catch (Throwable t) {
+      t.printStackTrace();
     }
-
-    protected String[] getArgs() {
-        return args;
-    }
-
-    protected String getTestUrl() {
-        return "src/test/javascript/jasmine-html-reporter-code-pass.html";
-    }
-
-    @Test
-    public void shouldRunJasmineTestAndStoreResult() {
-        File jsonFile = new File(getReportDir()+"/jscoverage.json");
-        if (jsonFile.exists())
-            jsonFile.delete();
-        webClient.get("http://localhost:8081/jscoverage.html?" + getTestUrl());
-
-        String handle = webClient.getWindowHandle();
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("browserIframe"));
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.presenceOfElementLocated(By.className("duration")));
-        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.className("duration"), "finished"));
-        verifyJasmineTestsPassed();
-
-        webClient.switchTo().window(handle);
-
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
-        webClient.findElement(By.id("storeTab")).click();
-
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"),"Done"));
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
-        webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
-
-        webClient.get(format("http://localhost:8081/%s/jscoverage.html", getReportDir()));
-        verifyTotal(webClient, 100, 100, 100);
-    }
-
-    @Test
-    public void shouldRunJasmineTestAndStoreResultViaJavaScriptCall() throws Exception {
-        File jsonFile = new File(getReportDir()+"/directory/jscoverage.json");
-        if (jsonFile.exists())
-            jsonFile.delete();
-
-        webClient.get("http://localhost:8081/jscoverage.html");
-        webClient.findElement(By.id("location")).clear();
-        webClient.findElement(By.id("location")).sendKeys("http://localhost:8081/" + getTestUrl());
-        webClient.findElement(By.id("openInWindowButton")).click();
-
-        String handle = webClient.getWindowHandle();
-        Set<String> allHandles = webClient.getWindowHandles();
-        for(String currentHandle : allHandles) {
-            if (!currentHandle.equals(handle)) {
-                webClient.switchTo().window(currentHandle);
-                break;
-            }
-        }
+  }
 
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.presenceOfElementLocated(By.className("duration")));
-        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.className("duration"), "finished"));
-        verifyJasmineTestsPassed();
-        webClient.switchTo().window(handle);
+  protected String[] getArgs() {
+    return args;
+  }
 
 
-        verifyTotal(webClient, 100, 100, 100);
+  protected String getTestUrl() {
+    return "src/test/javascript/jasmine-html-reporter-code-pass.html";
+  }
 
-        webClient.switchTo().window("jscoverage_window");
-        ((JavascriptExecutor) webClient).executeScript("jscoverage_report('directory')");
 
-        webClient.get(format("http://localhost:8081/%s/directory/jscoverage.html", getReportDir()));
-        verifyTotal(webClient, 100, 100, 100);
-    }
+  @Test
+  public void shouldRunJasmineTestAndStoreResult() throws MojoFailureException, MojoExecutionException {
+    File jsonFile = new File(getReportDir() + "/jscoverage.json");
+    if (jsonFile.exists())
+      jsonFile.delete();
+    webClient.get("http://localhost:8081/" + getTestUrl());
 
-    private void verifyJasmineTestsPassed() {
-        if (webClient.findElements(By.className("failingAlert")).size() != 0) {
-            fail("Failing on test " + getTestUrl());
-        }
-    }
+    runner.waitForTestsToComplete(webClient);
+    runner.verifyTestsPassed(webClient);
 
-    protected void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-        webClient.findElement(By.id("summaryTab")).click();
+    webClient.get("http://localhost:8081/jscoverage.html");
+    new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
+    webClient.findElement(By.id("storeTab")).click();
 
-        verifyTotals(webClient, percentage, branchPercentage, functionPercentage);
-    }
+    new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
+    new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+    webClient.findElement(By.id("storeButton")).click();
+    new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
-    protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
-        assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
-        assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
-        assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());
-    }
+    webClient.get(format("http://localhost:8081/%s/jscoverage.html", getReportDir()));
+    verifyTotal(webClient, 100, 100, 100);
+  }
+
+
+  @Test
+  public void shouldRunJasmineTestAndStoreResultViaJavaScriptCall() throws Exception {
+    File jsonFile = new File(getReportDir() + "/directory/jscoverage.json");
+    if (jsonFile.exists())
+      jsonFile.delete();
+
+    webClient.get("http://localhost:8081/" + getTestUrl());
+    runner.waitForTestsToComplete(webClient);
+    runner.verifyTestsPassed(webClient);
+    ((JavascriptExecutor) webClient).executeScript("jscoverage_report('directory')");
+
+    webClient.get(format("http://localhost:8081/%s/directory/jscoverage.html", getReportDir()));
+    verifyTotal(webClient, 100, 100, 100);
+  }
+
+
+  protected void verifyTotal(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
+    webClient.findElement(By.id("summaryTab")).click();
+
+    verifyTotals(webClient, percentage, branchPercentage, functionPercentage);
+  }
+
+
+  protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
+    new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
+    assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
+    assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
+    assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());
+  }
 }

@@ -108,6 +108,11 @@
             <artifactId>JSCover</artifactId>
             <version>1.0.21</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.tntim96</groupId>
+            <artifactId>jscover-common-maven-plugin</artifactId>
+            <version>1.0.16-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
