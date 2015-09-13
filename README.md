@@ -50,6 +50,12 @@ To run the JSCover File Maven Plugin:
 
 **Note** JSCover File Maven Plugin generates your coverage reports _without ever running a server_.
 
+To merge the file and server reports above:
+`mvn jscover-report:merge`
+
+To generate cobertura XML and lcov data for the merged report above:
+`mvn jscover-report:format`
+
 
 See the configuration in the [pom.xml](https://github.com/tntim96/JSCover-samples/blob/master/pom.xml).
 
