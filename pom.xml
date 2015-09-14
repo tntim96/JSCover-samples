@@ -29,6 +29,12 @@
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        <!-- Testing staged release -->
+        <repository>
+            <id>sonatype</id>
+            <name>sonatype staging</name>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1090</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
