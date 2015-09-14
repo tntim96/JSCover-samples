@@ -57,7 +57,7 @@
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: com.github.tntim96:JSCover:1.0.21" level="project" />
     <orderEntry type="library" name="Maven: org.mozilla:rhino:1.7.7" level="project" />
-    <orderEntry type="library" name="Maven: com.github.tntim96:jscover-common-maven-plugin:1.0.16-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.github.tntim96:jscover-common-maven-plugin:1.0.15" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-api:3.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-model:3.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:3.3.3" level="project" />
