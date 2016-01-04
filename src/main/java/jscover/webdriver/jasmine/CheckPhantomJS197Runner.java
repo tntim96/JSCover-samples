@@ -39,7 +39,9 @@ public class CheckPhantomJS197Runner extends BlockJUnit4ClassRunner {
             phantomJSDriver = new PhantomJSDriver(new DesiredCapabilities());
             Map<String, Long> version = (Map<String, Long>) phantomJSDriver.executePhantomJS("return phantom.version;");
             //{minor=9, major=1, patch=7}
-            return version.get("major") >= 1 && version.get("minor") >= 9 && version.get("patch") >= 7;
+            return version.get("major") > 1
+                    || (version.get("major") == 1 && version.get("minor") > 9)
+                    || (version.get("major") == 1 && version.get("minor") == 9 && version.get("patch") >= 7);
         } catch(WebDriverException e) {
             e.printStackTrace();
             return false;

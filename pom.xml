@@ -60,22 +60,22 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.47.1</version>
+            <version>2.48.2</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.47.1</version>
+            <version>2.48.2</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.47.1</version>
+            <version>2.48.2</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-ie-driver</artifactId>
-            <version>2.47.1</version>
+            <version>2.48.2</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
@@ -112,12 +112,12 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.22</version>
+            <version>1.0.23</version>
         </dependency>
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>jscover-common-maven-plugin</artifactId>
-            <version>1.0.17-SNAPSHOT</version>
+            <version>1.0.17</version>
         </dependency>
     </dependencies>
 
@@ -143,7 +143,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.17-SNAPSHOT</version>
+                <version>1.0.17</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -182,7 +182,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.17-SNAPSHOT</version>
+                <version>1.0.17</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -224,7 +224,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.0.17-SNAPSHOT</version>
+                <version>1.0.17</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
