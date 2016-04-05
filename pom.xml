@@ -24,12 +24,13 @@
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </repository>
-        <!-- Testing snapshot development -->
+        <!-- Testing snapshot development
         <repository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        -->
         <!-- Testing staged release
         <repository>
             <id>sonatype</id>
@@ -50,12 +51,13 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
         -->
-        <!-- Testing staged release -->
+        <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
             <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1095</url>
         </pluginRepository>
+        -->
     </pluginRepositories>
 
     <dependencies>
