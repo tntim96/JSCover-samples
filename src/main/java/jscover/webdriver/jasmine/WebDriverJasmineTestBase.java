@@ -347,7 +347,7 @@ import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 import jscover.Main;
-import jscover.maven.Jasmine2DefaultReporterWebDriverRunner;
+import jscover.maven.JasmineWebDriverRunner;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.junit.After;
@@ -377,7 +377,7 @@ public abstract class WebDriverJasmineTestBase {
       "--no-instrument=target",
       "--report-dir=" + getReportDir()
   };
-  private Jasmine2DefaultReporterWebDriverRunner runner = new Jasmine2DefaultReporterWebDriverRunner();
+  private JasmineWebDriverRunner runner = new JasmineWebDriverRunner();
 
 
   protected abstract WebDriver getWebClient();
@@ -427,7 +427,7 @@ public abstract class WebDriverJasmineTestBase {
 
 
   protected String getTestUrl() {
-    return "src/test/javascript/jasmine2-code-pass.html";
+    return "src/test/javascript/jasmine-code-pass.html";
   }
 
 

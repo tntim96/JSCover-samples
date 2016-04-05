@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 import jscover.Main;
-import jscover.maven.MochaDefaultReporterWebDriverRunner;
+import jscover.maven.MochaWebDriverRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class MochaTest {
       "--report-dir=" + getReportDir()
   };
 
-  private MochaDefaultReporterWebDriverRunner runner = new MochaDefaultReporterWebDriverRunner();
+  private MochaWebDriverRunner runner = new MochaWebDriverRunner();
 
 
   public WebDriver getWebClient() {

@@ -12,10 +12,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>2.53.0</selenium.version>
     </properties>
 
     <prerequisites>
-       <maven>2.2.1</maven>
+        <maven>2.2.1</maven>
     </prerequisites>
 
     <repositories>
@@ -42,40 +43,41 @@
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>
         </pluginRepository>
-        <!-- Testing snapshot development -->
+        <!-- Testing snapshot development
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
-        <!-- Testing staged release
+        -->
+        <!-- Testing staged release -->
         <pluginRepository>
             <id>sonatype</id>
             <name>sonatype staging</name>
-            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1090</url>
+            <url>https://oss.sonatype.org/content/repositories/comgithubtntim96-1095</url>
         </pluginRepository>
-        -->
     </pluginRepositories>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.48.2</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.48.2</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.48.2</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-ie-driver</artifactId>
-            <version>2.48.2</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
@@ -85,7 +87,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20141113</version>
+            <version>20160212</version>
         </dependency>
 <!--
         <dependency>
@@ -112,12 +114,12 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.23</version>
+            <version>1.0.24</version>
         </dependency>
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>jscover-common-maven-plugin</artifactId>
-            <version>1.0.17</version>
+            <version>1.0.18</version>
         </dependency>
     </dependencies>
 
@@ -127,14 +129,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <configuration>
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>
@@ -143,7 +145,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.17</version>
+                <version>1.0.18</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -161,9 +163,9 @@
                     <!--<testType>JasmineHtmlReporter</testType>-->
                     <!--<testIncludes>jasmine-trivial-*.html</testIncludes>-->
                     <!--<testType>JasmineTrivialReporter</testType>-->
-                    <lineCoverageMinimum>66</lineCoverageMinimum>
-                    <branchCoverageMinimum>66</branchCoverageMinimum>
-                    <functionCoverageMinimum>66</functionCoverageMinimum>
+                    <lineCoverageMinimum>33</lineCoverageMinimum>
+                    <branchCoverageMinimum>33</branchCoverageMinimum>
+                    <functionCoverageMinimum>33</functionCoverageMinimum>
                     <instrumentPathArgs>
                         <arg>--no-instrument=src/main/webapp/js/vendor/</arg>
                         <arg>--no-instrument=src/test</arg>
@@ -182,7 +184,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.17</version>
+                <version>1.0.18</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -224,7 +226,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.0.17</version>
+                <version>1.0.18</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
