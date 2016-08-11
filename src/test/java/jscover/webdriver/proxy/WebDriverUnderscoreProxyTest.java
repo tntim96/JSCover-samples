@@ -351,7 +351,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -382,7 +382,7 @@ public class WebDriverUnderscoreProxyTest {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
-        return new FirefoxDriver(cap);
+        return new PhantomJSDriver(cap);
     }
 
     @BeforeClass
@@ -445,14 +445,14 @@ public class WebDriverUnderscoreProxyTest {
     }
 
     private void deleteJSON(String reportSubDir) {
-        File jsonFile = new File(reportDir+reportSubDir+"/jscoverage.json");
+        File jsonFile = new File(reportDir + reportSubDir + "/jscoverage.json");
         if (jsonFile.exists())
             jsonFile.delete();
     }
 
     private void verifyCoverage(String reportSubDir) {
-        webClient.get("file:///"+ new File(reportDir+reportSubDir+"/jscoverage.html").getAbsolutePath());
-        verifyTotal(webClient, 98, 84, 95);
+        webClient.get("file:///" + new File(reportDir + reportSubDir + "/jscoverage.html").getAbsolutePath());
+        verifyTotal(webClient, 98, 83, 95);
     }
 
     private void verifyQUnitTestsPassed() {
