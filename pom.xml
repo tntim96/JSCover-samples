@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>2.53.0</selenium.version>
+        <selenium.version>2.53.1</selenium.version>
     </properties>
 
     <prerequisites>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>jscover-common-maven-plugin</artifactId>
-            <version>1.0.18</version>
+            <version>1.0.19</version>
         </dependency>
     </dependencies>
 
@@ -140,7 +140,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.18</version>
+                <version>1.0.19</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -179,7 +179,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.18</version>
+                <version>1.0.19</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -221,7 +221,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.0.18</version>
+                <version>1.0.19</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
