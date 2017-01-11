@@ -1,7 +1,7 @@
 Samples for JSCover
 ===================
 
-[![Build Status](https://drone.io/github.com/tntim96/JSCover-samples/status.png)](https://drone.io/github.com/tntim96/JSCover-samples/latest)
+[![Build Status](https://travis-ci.org/tntim96/JSCover-samples.svg?branch=master)](https://travis-ci.org/tntim96/JSCover-samples)
 
 ## What you need:
 * Java (minimum 1.6)

@@ -356,6 +356,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -464,7 +465,10 @@ public abstract class WebDriverJasmineTestBase {
     webClient.get("http://localhost:8081/" + getTestUrl());
     runner.waitForTestsToComplete(webClient);
     runner.verifyTestsPassed(webClient);
-    ((JavascriptExecutor) webClient).executeScript("jscoverage_report('directory')");
+    ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
+    ((JavascriptExecutor) webClient).executeScript("jscoverage_report('directory', function(){window.jscoverFinished=true;});");
+    (new WebDriverWait(webClient, 10))
+            .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
 
     webClient.get(format("http://localhost:8081/%s/directory/jscoverage.html", getReportDir()));
     verifyTotal(webClient, 100, 100, 100);

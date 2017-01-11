@@ -351,9 +351,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -382,7 +383,7 @@ public class WebDriverUnderscoreProxyTest {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(CapabilityType.PROXY, proxy);
-        return new FirefoxDriver(cap);
+        return new PhantomJSDriver(cap);
     }
 
     @BeforeClass
@@ -420,7 +421,10 @@ public class WebDriverUnderscoreProxyTest {
         webClient.get("http://underscorejs.org/test/");
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
         verifyQUnitTestsPassed();
-        ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames');");
+        ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
+        ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames', function(){window.jscoverFinished=true;});");
+        (new WebDriverWait(webClient, 10))
+                .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
         verifyCoverage("/no-frames");
     }
 
@@ -452,7 +456,7 @@ public class WebDriverUnderscoreProxyTest {
 
     private void verifyCoverage(String reportSubDir) {
         webClient.get("file:///" + new File(reportDir + reportSubDir + "/jscoverage.html").getAbsolutePath());
-        verifyTotal(webClient, 98, 84, 95);
+        verifyTotal(webClient, 98, 83, 96);
     }
 
     private void verifyQUnitTestsPassed() {

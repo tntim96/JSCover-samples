@@ -14,6 +14,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -99,7 +100,10 @@ public class MochaTest {
     runner.waitForTestsToComplete(webClient);
     runner.verifyTestsPassed(webClient);
 
-    ((JavascriptExecutor) webClient).executeScript("jscoverage_report('" + getReportPartialSubDirectory() + "')");
+    ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
+    ((JavascriptExecutor) webClient).executeScript("jscoverage_report('" + getReportPartialSubDirectory() + "', function(){window.jscoverFinished=true;});");
+    (new WebDriverWait(webClient, 10))
+            .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
 
     webClient.get(format("http://localhost:8081/%s/%s/jscoverage.html", getReportDir(), getReportPartialSubDirectory()));
     verifyTotal(webClient, 100, 100, 100);
