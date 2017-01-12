@@ -7,6 +7,6 @@ before_install:
   - tar -xvf $PWD/travis-bin/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-bin
   - tar -xvf $PWD/travis-bin/geckodriver-v0.13.0-linux64.tar.gz -C $PWD/travis-bin
   - unzip $PWD/travis-bin/chromedriver_linux64.zip -d $PWD/travis-bin
-  - export PATH=$PWD/travis-phantomjs:$PATH
+  - export PATH=$PWD/travis-bin:$PATH
 jdk:
   - oraclejdk8
