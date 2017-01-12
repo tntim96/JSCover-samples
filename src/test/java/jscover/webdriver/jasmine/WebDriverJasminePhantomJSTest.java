@@ -351,10 +351,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @RunWith(CheckPhantomJS197Runner.class)
 public class WebDriverJasminePhantomJSTest extends WebDriverJasmineTestBase {
 
-    static {
-        //System.setProperty("phantomjs.binary.path", "C:/java/drivers//phantomjs.exe");
-    }
-
     @Override
     public WebDriver getWebClient() {
         return new PhantomJSDriver(new DesiredCapabilities());

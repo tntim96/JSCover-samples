@@ -350,11 +350,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @RunWith(CheckWindowsRunner.class)
 public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
 
-    static {
-        //System.setProperty("webdriver.ie.driver", "C:/java/IEDriverServer_x64_2.33.0/IEDriverServer.exe");
-        //System.setProperty("webdriver.ie.driver", "C:/java/drivers/IEDriverServer.exe");
-    }
-
     @Override
     public WebDriver getWebClient() {
         return new InternetExplorerDriver(new DesiredCapabilities());

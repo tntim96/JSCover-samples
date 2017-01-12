@@ -344,19 +344,15 @@ package jscover.webdriver.jasmine;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverJasmineChromeTest extends WebDriverJasmineTestBase {
 
-    static {
-        //System.setProperty("webdriver.chrome.driver","C:/Program Files (x86)/Google/Chrome/Application/chrome.exe");
-        //System.setProperty("webdriver.chrome.driver", "C:/java/drivers/chromedriver.exe");
-        //System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-    }
-
     @Override
     public WebDriver getWebClient() {
-        return new ChromeDriver(new DesiredCapabilities());
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--allow-file-access-from-files");
+        return new ChromeDriver(options);
     }
 
     @Override

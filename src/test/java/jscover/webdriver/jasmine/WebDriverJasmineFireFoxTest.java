@@ -346,6 +346,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverJasmineFireFoxTest extends WebDriverJasmineTestBase {
+
     @Override
     public WebDriver getWebClient() {
         return new FirefoxDriver();
