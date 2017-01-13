@@ -55,6 +55,7 @@ public class MochaTest {
 
   @Before
   public void setUp() throws Exception {
+    runner.setTimeOutSeconds(10);
     //boolean justStarted = false;
     if (server == null) {
       //justStarted = true;
