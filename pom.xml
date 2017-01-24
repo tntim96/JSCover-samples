@@ -20,13 +20,12 @@
     </prerequisites>
 
     <repositories>
-        <!-- Testing snapshot development
+        <!-- Testing snapshot development -->
         <repository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
-        -->
         <!-- Testing staged release
         <repository>
             <id>sonatype</id>
@@ -36,13 +35,12 @@
         -->
     </repositories>
     <pluginRepositories>
-        <!-- Testing snapshot development
+        <!-- Testing snapshot development -->
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
-        -->
         <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
@@ -140,7 +138,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.20</version>
+                <version>1.0.21-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -179,7 +177,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.20</version>
+                <version>1.0.21-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -221,7 +219,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.0.20</version>
+                <version>1.0.21-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>

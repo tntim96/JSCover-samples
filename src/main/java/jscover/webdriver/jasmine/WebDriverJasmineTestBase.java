@@ -451,6 +451,11 @@ public abstract class WebDriverJasmineTestBase {
     new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
     webClient.findElement(By.id("storeButton")).click();
     new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
     webClient.get(format("http://localhost:8081/%s/jscoverage.html", getReportDir()));
     verifyTotal(webClient, 100, 100, 100);
