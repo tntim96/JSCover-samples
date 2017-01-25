@@ -170,7 +170,7 @@
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
-                    <!--<webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>-->
+                    <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
                     <!--<webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>-->
                 </configuration>
             </plugin>
@@ -212,7 +212,7 @@
                     <reportLCOV>true</reportLCOV>
                     <!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName>-->
                     <!--<webDriverClassName>org.openqa.selenium.htmlunit.HtmlUnitDriver</webDriverClassName>-->
-                    <!--<webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>-->
+                    <webDriverClassName>org.openqa.selenium.chrome.ChromeDriver</webDriverClassName>
                     <!--<webDriverClassName>org.openqa.selenium.ie.InternetExplorerDriver</webDriverClassName>-->
                 </configuration>
             </plugin>
