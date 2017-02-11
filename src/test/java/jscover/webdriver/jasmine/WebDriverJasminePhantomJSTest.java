@@ -344,7 +344,7 @@ package jscover.webdriver.jasmine;
 
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
@@ -353,7 +353,7 @@ public class WebDriverJasminePhantomJSTest extends WebDriverJasmineTestBase {
 
     @Override
     public WebDriver getWebClient() {
-        return new ChromeDriver(new DesiredCapabilities());
+        return new PhantomJSDriver(new DesiredCapabilities());
     }
 
     @Override
