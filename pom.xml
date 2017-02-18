@@ -106,12 +106,12 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>1.0.25</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>jscover-common-maven-plugin</artifactId>
-            <version>1.0.21-SNAPSHOT</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 
@@ -138,7 +138,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.0.21-SNAPSHOT</version>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -177,7 +177,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.0.21-SNAPSHOT</version>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -219,7 +219,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.0.21-SNAPSHOT</version>
+                <version>1.1.0</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
