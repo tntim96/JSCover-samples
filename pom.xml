@@ -12,7 +12,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>3.0.1</selenium.version>
+        <selenium.version>3.2.0</selenium.version>
+        <jscovermp.version>1.1.1-SNAPSHOT</jscovermp.version>
     </properties>
 
     <prerequisites>
@@ -74,7 +75,7 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>phantomjsdriver</artifactId>
-            <version>1.3.0</version>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -111,7 +112,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>jscover-common-maven-plugin</artifactId>
-            <version>1.1.0</version>
+            <version>${jscovermp.version}</version>
         </dependency>
     </dependencies>
 
@@ -138,7 +139,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-server-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <version>${jscovermp.version}</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -177,7 +178,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-file-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <version>${jscovermp.version}</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
@@ -219,7 +220,7 @@
             <plugin>
                 <groupId>com.github.tntim96</groupId>
                 <artifactId>jscover-report-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <version>${jscovermp.version}</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>
