@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>3.2.0</selenium.version>
+        <selenium.version>3.3.1</selenium.version>
         <jscovermp.version>1.1.1-SNAPSHOT</jscovermp.version>
     </properties>
 
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20160212</version>
+            <version>20160810</version>
         </dependency>
 <!--
         <dependency>

@@ -1,1 +1,1 @@
-mvn clean verify;mvn surefire-report:report-only
+mvn clean verify surefire-report:report-only
