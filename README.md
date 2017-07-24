@@ -4,7 +4,7 @@ Samples for JSCover
 [![Build Status](https://travis-ci.org/tntim96/JSCover-samples.svg?branch=master)](https://travis-ci.org/tntim96/JSCover-samples)
 
 ## What you need:
-* Java (minimum 1.6)
+* Java (minimum 1.8)
 * Maven 3
 * [InternetExplorer and Chrome drivers for Selenium](http://code.google.com/p/selenium/downloads/list) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
 
