@@ -162,9 +162,9 @@
                     <!--<testType>JasmineHtmlReporter</testType>-->
                     <!--<testIncludes>jasmine-trivial-*.html</testIncludes>-->
                     <!--<testType>JasmineTrivialReporter</testType>-->
-                    <lineCoverageMinimum>33</lineCoverageMinimum>
-                    <branchCoverageMinimum>33</branchCoverageMinimum>
-                    <functionCoverageMinimum>33</functionCoverageMinimum>
+                    <lineCoverageMinimum>0</lineCoverageMinimum>
+                    <branchCoverageMinimum>0</branchCoverageMinimum>
+                    <functionCoverageMinimum>0</functionCoverageMinimum>
                     <instrumentPathArgs>
                         <arg>--no-instrument=src/main/webapp/js/vendor/</arg>
                         <arg>--no-instrument=src/test</arg>
