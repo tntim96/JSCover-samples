@@ -56,7 +56,7 @@
     <orderEntry type="library" name="Maven: com.github.detro:ghostdriver:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20160810" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
-    <orderEntry type="library" name="Maven: com.github.tntim96:JSCover:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.tntim96:JSCover:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.javascript:closure-compiler:v20170626" level="project" />
     <orderEntry type="library" name="Maven: com.google.javascript:closure-compiler-externs:v20170626" level="project" />
     <orderEntry type="library" name="Maven: args4j:args4j:2.33" level="project" />
@@ -64,7 +64,7 @@
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.jsinterop:jsinterop-annotations:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.github.tntim96:jscover-common-maven-plugin:2.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.tntim96:jscover-common-maven-plugin:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-api:3.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-model:3.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:3.5.0" level="project" />
@@ -75,6 +75,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.sisu:org.eclipse.sisu.inject:0.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-component-annotations:1.5.5" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-classworlds:2.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.0.24" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.1.0" level="project" />
   </component>
 </module>

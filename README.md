@@ -16,7 +16,7 @@ To run all tests:
 The Maven plugins driver path can be with the `systemProperties` property in the `pom.xml` file.
 For more details see the configuration details for the
 [jscover-server maven plugin](https://github.com/tntim96/JSCover-maven-plugin/tree/master/plugin-parent/server)
-and the [jscover-server maven plugin](https://github.com/tntim96/JSCover-maven-plugin/tree/master/plugin-parent/file-system).
+and the [jscover-file-system maven plugin](https://github.com/tntim96/JSCover-maven-plugin/tree/master/plugin-parent/file-system).
 
 #### Code Samples
 The Java code samples driver path can be set with the system properties `webdriver.ie.driver`, `webdriver.chrome.driver`
