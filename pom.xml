@@ -12,8 +12,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>3.7.1</selenium.version>
-        <jscovermp.version>2.0.2</jscovermp.version>
+        <selenium.version>3.8.1</selenium.version>
+        <jscovermp.version>2.0.3-SNAPSHOT</jscovermp.version>
     </properties>
 
     <prerequisites>
