@@ -457,7 +457,7 @@ public class WebDriverUnderscoreProxyTest {
 
     private void verifyCoverage(String reportSubDir) {
         webClient.get("file:///" + new File(reportDir + reportSubDir + "/jscoverage.html").getAbsolutePath());
-        verifyTotal(webClient, 97, 82, 95);
+        verifyTotal(webClient, 96, 82, 95);
     }
 
     private void verifyQUnitTestsPassed() {
