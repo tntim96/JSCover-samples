@@ -420,7 +420,7 @@ public class WebDriverUnderscoreProxyTest {
     public void shouldRunQUnitTestsAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
         webClient.get("http://underscorejs.org/test/");
-        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
+        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
         ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
         ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames', function(){window.jscoverFinished=true;});");
@@ -433,7 +433,7 @@ public class WebDriverUnderscoreProxyTest {
     public void shouldRunQUnitTestsAndStoreResultManually() {
         deleteJSON("");
         webClient.get("http://underscorejs.org/test/");
-        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "Tests completed"));
+        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
 
         webClient.get("http://underscorejs.org/jscoverage.html");
