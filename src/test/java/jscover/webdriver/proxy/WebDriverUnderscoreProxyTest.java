@@ -392,11 +392,7 @@ public class WebDriverUnderscoreProxyTest {
 
     @BeforeClass
     public static void setUpOnce() {
-        server = new Thread(new Runnable() {
-            public void run() {
-                main.runMain(args);
-            }
-        });
+        server = new Thread(() -> main.runMain(args));
         server.start();
     }
 

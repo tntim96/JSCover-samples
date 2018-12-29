@@ -392,16 +392,12 @@ public abstract class WebDriverJasmineTestBase {
 
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     runner.setTimeOutSeconds(10);
     //boolean justStarted = false;
     if (server == null) {
       //justStarted = true;
-      server = new Thread(new Runnable() {
-        public void run() {
-          new Main().runMain(getArgs());
-        }
-      });
+      server = new Thread(() -> new Main().runMain(getArgs()));
       server.start();
     }
     webClient = getWebClient();
