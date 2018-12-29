@@ -345,6 +345,7 @@ package jscover.webdriver.proxy;
 import jscover.Main;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -366,7 +367,9 @@ import static org.junit.Assert.fail;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public class WebDriverUnderscoreProxyTest {
-    private static Thread server;
+
+  private static final String UNDERSCOREJS_TEST_URL = "http://jscover.sourceforge.net/ci/underscore/test/";
+  private static Thread server;
     private static Main main = new Main();
     private static String reportDir = "target/reports/underscore-localstorage";
     private static final String[] args = new String[]{
@@ -374,7 +377,7 @@ public class WebDriverUnderscoreProxyTest {
             "--port=3129",
             "--proxy",
             "--local-storage",
-            "--no-instrument=test/vendor",
+            "--no-instrument-reg=.*\\/test\\/vendor\\/.*",
             "--report-dir=" + reportDir
     };
 
@@ -402,6 +405,11 @@ public class WebDriverUnderscoreProxyTest {
         main.stop();
     }
 
+    @Before
+    public void setUp() {
+      webClient.get("http://jscover.sourceforge.net/jscoverage-clear-local-storage.html");
+    }
+
     @After
     public void tearDown() {
         try {
@@ -419,7 +427,7 @@ public class WebDriverUnderscoreProxyTest {
     @Test
     public void shouldRunQUnitTestsAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
-        webClient.get("http://underscorejs.org/test/");
+        webClient.get(UNDERSCOREJS_TEST_URL);
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
         ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
@@ -432,11 +440,11 @@ public class WebDriverUnderscoreProxyTest {
     @Test
     public void shouldRunQUnitTestsAndStoreResultManually() {
         deleteJSON("");
-        webClient.get("http://underscorejs.org/test/");
+        webClient.get(UNDERSCOREJS_TEST_URL);
         new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
 
-        webClient.get("http://underscorejs.org/jscoverage.html");
+        webClient.get("http://jscover.sourceforge.net/jscoverage.html");
 
         new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
