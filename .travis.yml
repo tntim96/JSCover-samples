@@ -27,7 +27,7 @@ before_install:
 #  - chromedriver --version
 #  - geckodriver --version
 #  - phantomjs --version
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+#  - export DISPLAY=:99.0
+#  - sh -e /etc/init.d/xvfb start
 install: true
 script: mvn clean verify
