@@ -352,6 +352,7 @@ public class WebDriverJasmineChromeTest extends WebDriverJasmineTestBase {
     public WebDriver getWebClient() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--allow-file-access-from-files");
+        options.addArguments("headless");
         return new ChromeDriver(options);
     }
 
