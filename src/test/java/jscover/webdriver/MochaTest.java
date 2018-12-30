@@ -54,16 +54,12 @@ public class MochaTest {
 
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     runner.setTimeOutSeconds(10);
     //boolean justStarted = false;
     if (server == null) {
       //justStarted = true;
-      server = new Thread(new Runnable() {
-        public void run() {
-          new Main().runMain(args);
-        }
-      });
+      server = new Thread(() -> new Main().runMain(args));
       server.start();
     }
     webClient = getWebClient();
