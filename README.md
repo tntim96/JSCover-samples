@@ -6,7 +6,7 @@ Samples for JSCover
 ## What you need:
 * Java (minimum 1.8)
 * Maven 3
-* [InternetExplorer and Chrome drivers for Selenium](http://code.google.com/p/selenium/downloads/list) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
+* [Chrome, FireFox (gecko) and InternetExplorer drivers for Selenium](https://www.seleniumhq.org/download/) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
 
 To run all tests:
 `mvn verify`
