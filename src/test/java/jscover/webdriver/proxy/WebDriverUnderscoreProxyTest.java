@@ -413,11 +413,6 @@ public class WebDriverUnderscoreProxyTest {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        try {
-            webClient.quit();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
     @Test
