@@ -66,11 +66,6 @@ public class WebDriverGeneralProxyTest {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        try {
-            webClient.quit();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
     @Test

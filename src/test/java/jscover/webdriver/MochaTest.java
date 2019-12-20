@@ -75,11 +75,6 @@ public class MochaTest {
     } catch (Throwable t) {
       t.printStackTrace();
     }
-    try {
-      webClient.quit();
-    } catch (Throwable t) {
-      t.printStackTrace();
-    }
   }
 
 
