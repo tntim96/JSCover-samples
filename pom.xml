@@ -40,6 +40,10 @@
         -->
     </repositories>
     <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </pluginRepository>
         <!-- Testing snapshot development
         <pluginRepository>
             <id>Sonatype repository</id>
@@ -92,23 +96,23 @@
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>com.github.detro</groupId>
-            <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-server</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
--->
+        <!--
+                <dependency>
+                    <groupId>com.github.detro</groupId>
+                    <artifactId>phantomjsdriver</artifactId>
+                    <version>1.2.0</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.seleniumhq.selenium</groupId>
+                            <artifactId>selenium-remote-driver</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.seleniumhq.selenium</groupId>
+                            <artifactId>selenium-server</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+        -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
