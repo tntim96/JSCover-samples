@@ -342,6 +342,11 @@ Public License instead of this License.
 
 package jscover.webdriver.proxy;
 
+import static java.lang.String.format;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
+
 import jscover.Main;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -352,19 +357,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-
-import static java.lang.String.format;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public class WebDriverUnderscoreProxyTest {
 
@@ -385,9 +384,10 @@ public class WebDriverUnderscoreProxyTest {
 
     private WebDriver getWebClient() {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability(CapabilityType.PROXY, proxy);
-        return new PhantomJSDriver(cap);
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setHeadless(true);
+        firefoxOptions.setProxy(proxy);
+        return new FirefoxDriver(firefoxOptions);
     }
 
     @BeforeClass

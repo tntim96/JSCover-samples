@@ -345,14 +345,15 @@ package jscover.webdriver.jasmine;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 @RunWith(CheckWindowsRunner.class)
 public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
 
     @Override
     public WebDriver getWebClient() {
-        return new InternetExplorerDriver(new DesiredCapabilities());
+        InternetExplorerOptions options = new InternetExplorerOptions();
+        return new InternetExplorerDriver(options);
     }
 
     @Override
@@ -361,7 +362,7 @@ public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
     }
 
     @Override
-    public void shouldRunJasmineTestAndStoreResultViaJavaScriptCall() throws Exception {
+    public void shouldRunJasmineTestAndStoreResultViaJavaScriptCall() {
         //WIP
     }
 }
