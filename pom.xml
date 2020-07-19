@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>3.141.59</selenium.version>
-        <jscovermp.version>2.0.8</jscovermp.version>
+        <jscovermp.version>2.0.9</jscovermp.version>
     </properties>
 
     <prerequisites>
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20190722</version>
+            <version>20200518</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>com.github.tntim96</groupId>
             <artifactId>JSCover</artifactId>
-            <version>2.0.9</version>
+            <version>2.0.10</version>
         </dependency>
         <dependency>
             <groupId>com.github.tntim96</groupId>
@@ -122,7 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>3.0.0-M5</version>
                 <configuration>
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>
