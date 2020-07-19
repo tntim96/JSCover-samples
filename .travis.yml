@@ -6,10 +6,20 @@ jdk:
 cache:
   directories:
   - $HOME/.m2
+apt:
+  packages:
+    - dpkg  # see https://github.com/travis-ci/travis-ci/issues/9361
 addons:
   firefox: latest
   chrome: stable
 before_install:
+  - sudo apt-get clean
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq postfix
+  - sudo apt-get install --reinstall dpkg
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome-stable_current_amd64.deb
+  - google-chrome --version
   - mkdir travis-bin
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -O $PWD/travis-bin/geckodriver-v0.26.0-linux64.tar.gz
   - wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip -O $PWD/travis-bin/chromedriver_linux64.zip
