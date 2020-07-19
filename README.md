@@ -6,7 +6,7 @@ Samples for JSCover
 ## What you need:
 * Java (minimum 1.8)
 * Maven 3
-* [Chrome, FireFox (gecko) and InternetExplorer drivers for Selenium](https://www.seleniumhq.org/download/) and [PhantomJS](http://phantomjs.org/) for the WebDriver examples. These should be on the executable path.
+* [Chrome, FireFox (gecko) and InternetExplorer drivers for Selenium](https://www.seleniumhq.org/download/) for the WebDriver examples. These should be on the executable path.
 
 To run all tests:
 `mvn verify`
@@ -19,8 +19,8 @@ For more details see the configuration details for the
 and the [jscover-file-system maven plugin](https://github.com/tntim96/JSCover-maven-plugin/tree/master/plugin-parent/file-system).
 
 #### Code Samples
-The Java code samples driver path can be set with the system properties `webdriver.ie.driver`, `webdriver.chrome.driver`
-and `phantomjs.binary.path` set either on the command line or directly in the Java code.
+The Java code samples driver path can be set with the system properties `webdriver.ie.driver` and `webdriver.chrome.driver`
+set either on the command line or directly in the Java code.
 
 ## Java Code Samples
 To run JUnit tests:
@@ -28,7 +28,7 @@ To run JUnit tests:
 
 ### Server Examples In Multiple Browsers With Jasmine
 The main class is
-[WebDriverJasmineTestBase](https://github.com/tntim96/JSCover-samples/blob/master/src/main/java/jscover/webdriver/jasmine/WebDriverJasmineTestBase.java). Examples using PhantomJS, FireFox, Chrome and IE are [here](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/jasmine/).
+[WebDriverJasmineTestBase](https://github.com/tntim96/JSCover-samples/blob/master/src/main/java/jscover/webdriver/jasmine/WebDriverJasmineTestBase.java). Examples using FireFox, Chrome and IE are [here](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/jasmine/).
 
 The examples use Jasmine and Jasmine's `HtmlReporter`.
 
