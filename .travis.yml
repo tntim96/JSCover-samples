@@ -12,7 +12,7 @@ addons:
 before_install:
   - mkdir travis-bin
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -O $PWD/travis-bin/geckodriver-v0.26.0-linux64.tar.gz
-  - wget https://chromedriver.storage.googleapis.com/80.0.3987.16/chromedriver_linux64.zip -O $PWD/travis-bin/chromedriver_linux64.zip
+  - wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip -O $PWD/travis-bin/chromedriver_linux64.zip
   - tar -xvf $PWD/travis-bin/geckodriver-v0.26.0-linux64.tar.gz -C $PWD/travis-bin
   - unzip $PWD/travis-bin/chromedriver_linux64.zip -d $PWD/travis-bin
   - export PATH=$PWD/travis-bin:$PATH
