@@ -342,11 +342,11 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
-import org.junit.Ignore;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-@Ignore
+@RunWith(CheckMacRunner.class)
 public class WebDriverJasmineSafariTest extends WebDriverJasmineTestBase {
     @Override
     public WebDriver getWebClient() {
@@ -356,10 +356,5 @@ public class WebDriverJasmineSafariTest extends WebDriverJasmineTestBase {
     @Override
     protected String getReportPartialSubDirectory() {
         return "safari";
-    }
-
-    @Override
-    public void shouldRunJasmineTestAndStoreResultViaJavaScriptCall() throws Exception {
-        //WIP
     }
 }
