@@ -353,7 +353,7 @@ public class WebDriverJasmineChromeTest extends WebDriverJasmineTestBase {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--allow-file-access-from-files");
         options.addArguments("--whitelisted-ips");
-        options.addArguments("headless");
+        options.setHeadless(true);
         return new ChromeDriver(options);
     }
 

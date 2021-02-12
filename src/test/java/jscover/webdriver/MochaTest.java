@@ -40,7 +40,7 @@ public class MochaTest {
 
   public WebDriver getWebClient() {
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("headless");
+    options.setHeadless(true);
     return new ChromeDriver(options);
   }
 
