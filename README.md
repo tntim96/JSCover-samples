@@ -1,7 +1,7 @@
 Samples for JSCover
 ===================
 
-[![Build Status](https://travis-ci.org/tntim96/JSCover-samples.svg?branch=master)](https://travis-ci.org/tntim96/JSCover-samples)
+[![Build Status](https://github.com/tntim96/JSCover-samples/workflows/Java-CI/badge.svg)](https://github.com/tntim96/JSCover-samples/actions?query=workflow%3A%22Java-CI%22)
 
 ## What you need:
 * Java (minimum 1.8)

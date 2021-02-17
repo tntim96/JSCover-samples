@@ -1,0 +1,26 @@
+name: Java-CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install Chrome
+        run: sudo apt install google-chrome-stable
+      - name: Install Chromedriver
+        run: |
+          mkdir github-bin
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz -O $PWD/github-bin/geckodriver-v0.29.0-linux64.tar.gz
+          wget https://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip -O $PWD/github-bin/chromedriver_linux64.zip
+          tar -xvf $PWD/github-bin/geckodriver-v0.29.0-linux64.tar.gz -C $PWD/github-bin
+          unzip $PWD/github-bin/chromedriver_linux64.zip -d $PWD/github-bin
+          export PATH=$PWD/github-bin:$PATH
+      - name: Test with Maven
+        run: mvn clean verify
