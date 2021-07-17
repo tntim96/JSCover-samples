@@ -18,7 +18,7 @@ jobs:
         run: |
           mkdir github-bin
           wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz -O $PWD/github-bin/geckodriver-v0.29.1-linux64.tar.gz
-          wget https://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip -O $PWD/github-bin/chromedriver_linux64.zip
+          wget https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip -O $PWD/github-bin/chromedriver_linux64.zip
           tar -xvf $PWD/github-bin/geckodriver-v0.29.1-linux64.tar.gz -C $PWD/github-bin
           unzip $PWD/github-bin/chromedriver_linux64.zip -d $PWD/github-bin
           export PATH=$PWD/github-bin:$PATH
