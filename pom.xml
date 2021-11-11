@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.0.0</selenium.version>
-        <jscovermp.version>2.0.12-SNAPSHOT</jscovermp.version>
+        <jscovermp.version>2.0.12</jscovermp.version>
     </properties>
 
     <prerequisites>
@@ -44,12 +44,13 @@
             <id>central</id>
             <url>https://repo1.maven.org/maven2/</url>
         </pluginRepository>
-        <!-- Testing snapshot development -->
+        <!-- Testing snapshot development
         <pluginRepository>
             <id>Sonatype repository</id>
             <name>Sonatype's Maven repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </pluginRepository>
+         -->
         <!-- Testing staged release
         <pluginRepository>
             <id>sonatype</id>
