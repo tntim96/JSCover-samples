@@ -21,6 +21,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
+
 
 public class WebDriverGeneralProxyTest {
     private static Thread server;
@@ -76,12 +78,12 @@ public class WebDriverGeneralProxyTest {
     public void shouldRunExampleAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
         webClient.get("http://tntim96.github.io/JSCover/example/");
-        new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
+        new WebDriverWait(webClient, Duration.ofSeconds(2)).until(elementToBeClickable(By.id("radio2")));
         webClient.findElement(By.id("radio2")).click();
         webClient.findElement(By.id("radio4")).click();
         ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
         ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames', function(){window.jscoverFinished=true;});");
-        (new WebDriverWait(webClient, 10))
+        (new WebDriverWait(webClient, Duration.ofSeconds(10)))
                 .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
         verifyCoverage("/no-frames");
         verifyTotal(webClient, 89, 62, 100);
@@ -91,19 +93,19 @@ public class WebDriverGeneralProxyTest {
     public void shouldRunExample() {
         deleteJSON("");
         webClient.get("http://tntim96.github.io/JSCover/example/");
-        new WebDriverWait(webClient, 2).until(elementToBeClickable(By.id("radio2")));
+        new WebDriverWait(webClient, Duration.ofSeconds(2)).until(elementToBeClickable(By.id("radio2")));
         webClient.findElement(By.id("radio2")).click();
         webClient.findElement(By.id("radio4")).click();
 
         webClient.get("http://tntim96.github.io/jscoverage.html");
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"),"Done"));
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"),"Done"));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, Duration.ofSeconds(10)).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
         verifyCoverage("");
     }
@@ -126,7 +128,7 @@ public class WebDriverGeneralProxyTest {
     }
 
     void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
         assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
         assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
         assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());

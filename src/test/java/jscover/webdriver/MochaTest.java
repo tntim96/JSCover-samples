@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
 
 
 public class MochaTest {
@@ -96,7 +97,7 @@ public class MochaTest {
 
     ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
     ((JavascriptExecutor) webClient).executeScript("jscoverage_report('" + getReportPartialSubDirectory() + "', function(){window.jscoverFinished=true;});");
-    (new WebDriverWait(webClient, 10))
+    (new WebDriverWait(webClient, Duration.ofSeconds(10)))
             .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
 
     webClient.get(format("http://localhost:8081/%s/%s/jscoverage.html", getReportDir(), getReportPartialSubDirectory()));
@@ -111,7 +112,7 @@ public class MochaTest {
 
 
   protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-    new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
+    new WebDriverWait(webClient, Duration.ofSeconds(1)).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
     assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
     assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
     assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());

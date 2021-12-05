@@ -364,6 +364,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
+
 
 public class WebDriverUnderscoreProxyTest {
 
@@ -419,11 +421,11 @@ public class WebDriverUnderscoreProxyTest {
     public void shouldRunQUnitTestsAndStoreResultProgrammatically() {
         deleteJSON("/no-frames");
         webClient.get(UNDERSCOREJS_TEST_URL);
-        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
+        new WebDriverWait(webClient, Duration.ofSeconds(20)).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
         ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
         ((JavascriptExecutor) webClient).executeScript("jscoverage_report('no-frames', function(){window.jscoverFinished=true;});");
-        (new WebDriverWait(webClient, 10))
+        (new WebDriverWait(webClient, Duration.ofSeconds(10)))
                 .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
         verifyCoverage("/no-frames");
     }
@@ -432,18 +434,18 @@ public class WebDriverUnderscoreProxyTest {
     public void shouldRunQUnitTestsAndStoreResultManually() {
         deleteJSON("");
         webClient.get(UNDERSCOREJS_TEST_URL);
-        new WebDriverWait(webClient, 20).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
+        new WebDriverWait(webClient, Duration.ofSeconds(20)).until(textToBePresentInElementLocated(By.id("qunit-testresult"), "tests completed"));
         verifyQUnitTestsPassed();
 
         webClient.get("http://jscover.sourceforge.net/jscoverage.html");
 
-        new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
+        new WebDriverWait(webClient, Duration.ofSeconds(2)).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
         webClient.findElement(By.id("storeTab")).click();
 
-        new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
-        new WebDriverWait(webClient, 2).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
+        new WebDriverWait(webClient, Duration.ofSeconds(2)).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
         webClient.findElement(By.id("storeButton")).click();
-        new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+        new WebDriverWait(webClient, Duration.ofSeconds(10)).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
 
         verifyCoverage("");
     }
@@ -474,7 +476,7 @@ public class WebDriverUnderscoreProxyTest {
 
     void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
         webClient.findElement(By.id("summaryTab")).click();
-        new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
+        new WebDriverWait(webClient, Duration.ofSeconds(1)).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
 
         verifyField("Line", "summaryTotal", percentage);
         verifyField("Branch", "branchSummaryTotal", branchPercentage);

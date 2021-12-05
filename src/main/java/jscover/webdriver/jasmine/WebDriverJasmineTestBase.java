@@ -361,6 +361,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
 
 
 public abstract class WebDriverJasmineTestBase {
@@ -435,13 +436,13 @@ public abstract class WebDriverJasmineTestBase {
     runner.verifyTestsPassed(webClient);
 
     webClient.get("http://localhost:8081/jscoverage.html");
-    new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
+    new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.elementToBeClickable(By.id("storeTab")));
     webClient.findElement(By.id("storeTab")).click();
 
-    new WebDriverWait(webClient, 1).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
-    new WebDriverWait(webClient, 1).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
+    new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.textToBePresentInElementLocated(By.id("progressLabel"), "Done"));
+    new WebDriverWait(webClient, Duration.ofSeconds(1)).until(ExpectedConditions.elementToBeClickable(By.id("storeButton")));
     webClient.findElement(By.id("storeButton")).click();
-    new WebDriverWait(webClient, 10).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
+    new WebDriverWait(webClient, Duration.ofSeconds(10)).until(textToBePresentInElementLocated(By.id("storeDiv"), "Coverage data stored at"));
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
@@ -464,7 +465,7 @@ public abstract class WebDriverJasmineTestBase {
     runner.verifyTestsPassed(webClient);
     ((JavascriptExecutor) webClient).executeScript("window.jscoverFinished = false;");
     ((JavascriptExecutor) webClient).executeScript("jscoverage_report('directory', function(){window.jscoverFinished=true;});");
-    (new WebDriverWait(webClient, 10))
+    (new WebDriverWait(webClient, Duration.ofSeconds(10)))
             .until((ExpectedCondition<Boolean>) d -> (Boolean)((JavascriptExecutor) webClient).executeScript("return window.jscoverFinished;"));
 
     webClient.get(format("http://localhost:8081/%s/directory/jscoverage.html", getReportDir()));
@@ -480,7 +481,7 @@ public abstract class WebDriverJasmineTestBase {
 
 
   protected void verifyTotals(WebDriver webClient, int percentage, int branchPercentage, int functionPercentage) {
-    new WebDriverWait(webClient, 1).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
+    new WebDriverWait(webClient, Duration.ofSeconds(1)).until(textToBePresentInElementLocated(By.id("summaryTotal"), "%"));
     assertEquals(percentage + "%", webClient.findElement(By.id("summaryTotal")).getText());
     assertEquals(branchPercentage + "%", webClient.findElement(By.id("branchSummaryTotal")).getText());
     assertEquals(functionPercentage + "%", webClient.findElement(By.id("functionSummaryTotal")).getText());
