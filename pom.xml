@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.1.1</selenium.version>
+        <selenium.version>4.1.2</selenium.version>
         <jscovermp.version>2.0.13</jscovermp.version>
     </properties>
 
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20211205</version>
+            <version>20220320</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
