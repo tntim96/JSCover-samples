@@ -17,9 +17,9 @@ jobs:
       - name: Install Chromedriver
         run: |
           mkdir github-bin
-          wget https://github.com/mozilla/geckodriver/releases/download/v0.31.0/geckodriver-v0.31.0-linux64.tar.gz -O $PWD/github-bin/geckodriver-v0.31.0-linux64.tar.gz
-          wget https://chromedriver.storage.googleapis.com/101.0.4951.15/chromedriver_linux64.zip -O $PWD/github-bin/chromedriver_linux64.zip
-          tar -xvf $PWD/github-bin/geckodriver-v0.31.0-linux64.tar.gz -C $PWD/github-bin
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz -O $PWD/github-bin/geckodriver-v0.32.0-linux64.tar.gz
+          wget https://chromedriver.storage.googleapis.com/107.0.5304.62/chromedriver_linux64.zip -O $PWD/github-bin/chromedriver_linux64.zip
+          tar -xvf $PWD/github-bin/geckodriver-v0.32.0-linux64.tar.gz -C $PWD/github-bin
           unzip $PWD/github-bin/chromedriver_linux64.zip -d $PWD/github-bin
           export PATH=$PWD/github-bin:$PATH
       - name: Test with Maven

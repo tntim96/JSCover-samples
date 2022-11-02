@@ -352,6 +352,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -367,6 +368,7 @@ import java.io.File;
 import java.time.Duration;
 
 
+@Ignore("This will fail with SSL redirect")
 public class WebDriverUnderscoreProxyTest {
 
   private static final String UNDERSCOREJS_TEST_URL = "http://jscover.sourceforge.net/ci/underscore/test/";
