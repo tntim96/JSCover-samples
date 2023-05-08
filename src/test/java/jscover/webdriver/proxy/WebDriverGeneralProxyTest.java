@@ -42,7 +42,7 @@ public class WebDriverGeneralProxyTest {
     private WebDriver getWebClient() {
         Proxy proxy = new Proxy().setHttpProxy("localhost:3129");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setHeadless(true);
+        firefoxOptions.addArguments("-headless");
         firefoxOptions.setProxy(proxy);
         return new FirefoxDriver(firefoxOptions);
     }

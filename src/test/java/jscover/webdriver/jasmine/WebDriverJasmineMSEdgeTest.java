@@ -342,23 +342,24 @@ Public License instead of this License.
 
 package jscover.webdriver.jasmine;
 
-import org.junit.runner.RunWith;
+import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
-@RunWith(CheckWindowsRunner.class)
-public class WebDriverJasmineIETest extends WebDriverJasmineTestBase {
+@Ignore
+public class WebDriverJasmineMSEdgeTest extends WebDriverJasmineTestBase {
 
     @Override
     public WebDriver getWebClient() {
-        InternetExplorerOptions options = new InternetExplorerOptions();
-        return new InternetExplorerDriver(options);
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--headless");
+        return new EdgeDriver(options);
     }
 
     @Override
     protected String getReportPartialSubDirectory() {
-        return "ie";
+        return "edge";
     }
 
     @Override

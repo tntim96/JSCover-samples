@@ -19,7 +19,7 @@ For more details see the configuration details for the
 and the [jscover-file-system maven plugin](https://github.com/tntim96/JSCover-maven-plugin/tree/master/plugin-parent/file-system).
 
 #### Code Samples
-The Java code samples driver path can be set with the system properties `webdriver.ie.driver` and `webdriver.chrome.driver`
+The Java code samples driver path can be set with the system properties `webdriver.edge.driver` and `webdriver.chrome.driver`
 set either on the command line or directly in the Java code.
 
 ## Java Code Samples
@@ -28,7 +28,7 @@ To run JUnit tests:
 
 ### Server Examples In Multiple Browsers With Jasmine
 The main class is
-[WebDriverJasmineTestBase](https://github.com/tntim96/JSCover-samples/blob/master/src/main/java/jscover/webdriver/jasmine/WebDriverJasmineTestBase.java). Examples using FireFox, Chrome and IE are [here](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/jasmine/).
+[WebDriverJasmineTestBase](https://github.com/tntim96/JSCover-samples/blob/master/src/main/java/jscover/webdriver/jasmine/WebDriverJasmineTestBase.java). Examples using FireFox, Chrome and MS Edge are [here](https://github.com/tntim96/JSCover-samples/blob/master/src/test/java/jscover/webdriver/jasmine/).
 
 The examples use Jasmine and Jasmine's `HtmlReporter`.
 

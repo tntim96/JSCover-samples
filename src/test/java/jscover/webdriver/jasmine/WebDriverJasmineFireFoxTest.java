@@ -352,7 +352,7 @@ public class WebDriverJasmineFireFoxTest extends WebDriverJasmineTestBase {
     @Override
     public WebDriver getWebClient() {
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(true);
+        options.addArguments("-headless");
         return new FirefoxDriver(options);
     }
 
