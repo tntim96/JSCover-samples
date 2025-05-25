@@ -4,7 +4,7 @@ Samples for JSCover
 [![Build Status](https://github.com/tntim96/JSCover-samples/workflows/Java-CI/badge.svg)](https://github.com/tntim96/JSCover-samples/actions?query=workflow%3A%22Java-CI%22)
 
 ## What you need:
-* Java (minimum 11)
+* Java (minimum 21)
 * Maven 3
 * [Chrome, FireFox (gecko) and MS Edge drivers for Selenium](https://www.seleniumhq.org/download/) for the WebDriver examples. These should be on the executable path.
 
